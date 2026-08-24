@@ -1,0 +1,45 @@
+---
+description: Folder structure, routing and module boundaries for 랜딩 페이지 생성.
+alwaysApply: false
+---
+
+# Architecture
+
+## Stack
+- **Frontend**: `Next.js, TypeScript, Tailwind CSS`
+- **Backend**: `없음`
+- **Database**: `없음`
+- **Deployment**: 정적 호스팅을 고려한 빌드 구성, 프로덕션 배포는 제외
+
+## Routing / Pages
+
+| Route | Page | Purpose |
+|-------|------|---------|
+| `/hero` | Hero 섹션 | 핵심 가치 제안과 무료로 시작하기 CTA 버튼 표시 |
+| `/screen` | 문제 제시 섹션 | 사용자가 겪는 문제를 제시하여 공감 유도 |
+| `/screen-2` | 서비스 소개 섹션 | 아이디어 입력부터 기획안 생성까지의 흐름 안내 |
+| `/screen-3` | 핵심 장점 섹션 | 쉽게 시작, 빠른 정리, 개발에 활용 등 핵심 장점 전달 |
+| `/cta` | 최종 CTA 섹션 | 기획안 만들기 버튼으로 전환 유도 |
+
+## Per-feature page notes
+
+- **CTA 버튼 클릭**
+  - 히어로 풀스크린형
+- **상단 로고 표시**
+  - 고정 헤더 바형
+- **사용자 후기 섹션**
+  - 사용자 후기 섹션 화면 — 실제 사용자의 긍정적인 평가와 결과를 시각적으로 표시하여 신뢰도를 높인다.
+- **모바일/PC 반응형 지원**
+  - 풀스크린 스크롤형
+- **기본 SEO 메타 태그 적용**
+  - OG 미리보기 카드형
+- **방문 및 CTA 클릭 이벤트 측정**
+  - 히어로 스크롤 추적형
+
+## Entities (data model)
+
+- **LandingPageSection**
+- **Testimonial**
+- **AnalyticsEvent**
+
+> Detailed field-level schema lives in PRD §6. Do not invent fields outside that section.

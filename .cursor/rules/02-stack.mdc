@@ -1,0 +1,28 @@
+---
+description: Runtime stack, integrations and monetization context for 랜딩 페이지 생성.
+globs: ["src/**", "app/**", "backend/**", "frontend/**"]
+alwaysApply: false
+---
+
+# Stack & Integrations
+
+## Stack
+- **Frontend**: `Next.js, TypeScript, Tailwind CSS`
+- **Backend**: `없음`
+- **Database**: `없음`
+- **Deployment**: 정적 호스팅을 고려한 빌드 구성, 프로덕션 배포는 제외
+
+## External integrations
+- _(no external integrations declared)_
+
+## Monetization context
+- **Model**: Ad-supported
+- needs_ads: True
+- needs_payment: False
+- analytics_tracking: False
+
+## Rules
+- All secrets MUST be referenced by env variable **name** only (defined in PRD §9).
+  Never inline an actual key, token, password, or URL with credentials.
+- When adding a dependency, declare it in the manifest file of the chosen stack
+  (`package.json`, `pyproject.toml`, etc.) — do not use system-wide installs.
