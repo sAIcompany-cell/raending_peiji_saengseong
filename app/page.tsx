@@ -3,7 +3,7 @@
    실제 화면을 만들 때 **파일 전체를 버리고 새로 써라.** 여기 있는 내용을 참고하거나
    남겨 두지 마라. 커밋 직전에는 우리가 회수하므로 사용자 레포에도 남지 않는다. */
 
-const STEPS: { label: string; state: "done" | "active" | "todo" }[] = [{"label": "타입 정의", "state": "done"}, {"label": "API·시드 데이터", "state": "active"}, {"label": "UI 블록", "state": "todo"}, {"label": "화면 조립", "state": "todo"}];
+const STEPS: { label: string; state: "done" | "active" | "todo" }[] = [{"label": "타입 정의", "state": "done"}, {"label": "API·시드 데이터", "state": "done"}, {"label": "UI 블록", "state": "active"}, {"label": "화면 조립", "state": "todo"}];
 
 const DOT: Record<string, { border: string; background: string }> = {
   done: { border: "#e4e4e7", background: "#e4e4e7" },
