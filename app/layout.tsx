@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { SiteHeader } from "@/components/features/site-header";
+import { Container } from "@/components/ui/container";
 
 // 문서 메타는 결정론적으로 심는다. 프롬프트 지시로만 두면 스캐폴드가 만들어 둔
 // 기본 제목이 그대로 배포까지 나가는 일이 생긴다 — 브라우저 탭·검색 결과·공유
@@ -18,7 +20,17 @@ export default function RootLayout({
     <html lang="ko">
       {/* 폰트는 app/globals.css 가 @import 로 싣는다(next/font 를 겹쳐 쓰지 마라). */}
       <body className="min-h-screen bg-background font-sans text-foreground antialiased">
-        {children}
+        <div className="flex min-h-screen flex-col">
+          <SiteHeader />
+          <div className="flex-1">{children}</div>
+          <footer className="border-t border-border py-8">
+            <Container>
+              <p className="text-sm text-muted-foreground">
+                가구한눈 · 가구 가격과 조건을 한곳에서 비교하는 랜딩페이지
+              </p>
+            </Container>
+          </footer>
+        </div>
       </body>
     </html>
   );

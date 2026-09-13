@@ -18,6 +18,12 @@ export default function Error({
     console.error(error);
   }, [error]);
 
+  const goHome = () => {
+    if (typeof window !== "undefined") {
+      window.location.href = "/";
+    }
+  };
+
   return (
     <main
       role="alert"
@@ -31,7 +37,7 @@ export default function Error({
       </p>
       <div className="mt-2 flex gap-2">
         <Button onClick={() => reset()}>다시 시도</Button>
-        <Button variant="outline" onClick={() => (window.location.href = "/")}>
+        <Button variant="outline" onClick={goHome}>
           처음으로
         </Button>
       </div>
