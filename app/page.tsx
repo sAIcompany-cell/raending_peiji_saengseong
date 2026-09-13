@@ -1,101 +1,111 @@
-/* cbv-live-placeholder — Cubivora 제작 중 임시 화면.
-   에이전트에게: 이 파일은 생성 진행 상황을 보여주려고 심어 둔 자리표시자다.
-   실제 화면을 만들 때 **파일 전체를 버리고 새로 써라.** 여기 있는 내용을 참고하거나
-   남겨 두지 마라. 커밋 직전에는 우리가 회수하므로 사용자 레포에도 남지 않는다. */
+"use client";
 
-const STEPS: { label: string; state: "done" | "active" | "todo" }[] = [{"label": "타입 정의", "state": "done"}, {"label": "API·시드 데이터", "state": "done"}, {"label": "UI 블록", "state": "done"}, {"label": "화면 조립", "state": "active"}];
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { SiteHeader } from "@/components/features/site-header";
+import { PageHeading, SectionBlock } from "@/components/features/landing-section";
+import { CtaButton } from "@/components/features/cta-button";
+import { ResponsiveSupport } from "@/components/features/responsive-support";
+import { SeoMetaPanel } from "@/components/features/seo-meta-panel";
+import { AnalyticsSummary } from "@/components/features/analytics-summary";
+import {
+  useAnalyticsEvents,
+  useLandingSections,
+} from "@/components/features/use-landing-data";
+import { usePageVisit } from "@/components/features/use-analytics";
+import { Container } from "@/components/ui/container";
+import { Card, CardContent } from "@/components/ui/card";
+import { Stagger, StaggerItem } from "@/components/motion";
+import type { LandingPageRoute } from "@/types";
 
-const DOT: Record<string, { border: string; background: string }> = {
-  done: { border: "#e4e4e7", background: "#e4e4e7" },
-  active: { border: "#38bdf8", background: "transparent" },
-  todo: { border: "#3f3f46", background: "transparent" },
-};
+const SCREENS: { href: LandingPageRoute; label: string; hint: string }[] = [
+  { href: "/hero", label: "Hero 섹션", hint: "서비스를 한 문장으로 소개합니다." },
+  { href: "/screen", label: "문제 제시 섹션", hint: "지금 겪고 있는 불편을 짚습니다." },
+  { href: "/screen-2", label: "서비스 소개 섹션", hint: "무엇을 해주는지 설명합니다." },
+  { href: "/screen-3", label: "핵심 장점 섹션", hint: "장점과 사용자 후기를 봅니다." },
+  { href: "/cta", label: "최종 CTA 섹션", hint: "신청·문의로 이어집니다." },
+];
 
-const TEXT: Record<string, string> = {
-  done: "#e4e4e7",
-  active: "#fafafa",
-  todo: "#71717a",
-};
+export default function HomePage() {
+  usePageVisit("/");
+  const sections = useLandingSections();
+  const events = useAnalyticsEvents();
 
-export default function Page() {
+  const hero = sections.data.find((section) => section.type === "hero");
+
   return (
-    <main
-      style={{
-        minHeight: "100vh",
-        background: "#09090b",
-        color: "#e4e4e7",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "48px 24px",
-        fontFamily:
-          "ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif",
-      }}
-    >
-      <div style={{ width: "100%", maxWidth: 560 }}>
-        <p
-          style={{
-            margin: 0,
-            fontSize: 12,
-            letterSpacing: "0.08em",
-            textTransform: "uppercase",
-            color: "#71717a",
-          }}
-        >
-          {"제작 중"}
-        </p>
-        <h1
-          style={{
-            margin: "12px 0 0",
-            fontSize: 24,
-            fontWeight: 600,
-            lineHeight: 1.35,
-            color: "#fafafa",
-          }}
-        >
-          {"랜딩 페이지 생성를 만들고 있어요"}
-        </h1>
-        <p style={{ margin: "10px 0 0", fontSize: 14, lineHeight: 1.7, color: "#a1a1aa" }}>
-          {"화면과 코드를 순서대로 만들고 있어요. 한 단계가 끝날 때마다 이 화면이 갱신됩니다."}
-        </p>
+    <div className="min-h-screen bg-background">
+      <SiteHeader />
+      <Container>
+        <main className="flex flex-col gap-10 py-12 sm:py-16">
+          <PageHeading
+            title="랜딩 페이지 생성"
+            description="방문자가 서비스를 빠르게 이해하고 CTA까지 이어지도록 구성한 랜딩페이지입니다."
+          />
 
-        <ul
-          style={{
-            listStyle: "none",
-            margin: "28px 0 0",
-            padding: "20px 20px 20px 18px",
-            display: "flex",
-            flexDirection: "column",
-            gap: 14,
-            border: "1px solid #27272a",
-            borderRadius: 10,
-            background: "#111113",
-          }}
-        >
-          {STEPS.map((step) => (
-            <li
-              key={step.label}
-              style={{ display: "flex", alignItems: "center", gap: 12, fontSize: 14 }}
-            >
-              <span
-                style={{
-                  width: 9,
-                  height: 9,
-                  flexShrink: 0,
-                  borderRadius: "50%",
-                  border: "1px solid " + DOT[step.state].border,
-                  background: DOT[step.state].background,
-                }}
+          <SectionBlock
+            section={hero}
+            highlights={[
+              "핵심 메시지 한 줄로 서비스 이해",
+              "모바일과 PC에서 동일한 흐름 유지",
+              "한 번의 클릭으로 다음 단계 이동",
+            ]}
+            statusLabel="공개됨"
+            loading={sections.loading}
+            error={sections.error}
+            action={
+              <CtaButton
+                label="랜딩페이지 둘러보기"
+                href="/hero"
+                pagePath="/"
+                hint="Hero 섹션부터 순서대로 확인할 수 있어요."
               />
-              <span style={{ color: TEXT[step.state] }}>{step.label}</span>
-            </li>
-          ))}
-        </ul>
+            }
+          />
 
-        <p style={{ margin: "20px 0 0", fontSize: 12, lineHeight: 1.7, color: "#52525b" }}>
-          {"이 화면은 제작 과정을 보여주는 임시 화면입니다. 만들기가 끝나면 실제 서비스 화면으로 바뀌고, 이 화면은 코드에 남지 않습니다."}
-        </p>
-      </div>
-    </main>
+          <section aria-labelledby="screen-list-heading" className="flex flex-col gap-4">
+            <h2
+              id="screen-list-heading"
+              className="text-xl font-semibold tracking-tight text-foreground"
+            >
+              섹션 바로가기
+            </h2>
+            <Stagger className="grid grid-cols-1 gap-gutter sm:grid-cols-2 lg:grid-cols-3">
+              {SCREENS.map((screen) => (
+                <StaggerItem key={screen.href}>
+                  <Link
+                    href={screen.href}
+                    className="group block rounded-[var(--radius)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+                  >
+                    <Card className="h-full transition-colors group-hover:border-brand">
+                      <CardContent className="flex h-full flex-col gap-2 p-6">
+                        <span className="flex items-center gap-2 text-base font-medium text-foreground">
+                          {screen.label}
+                          <ArrowRight
+                            aria-hidden="true"
+                            className="h-4 w-4 text-brand transition-transform group-hover:translate-x-0.5"
+                          />
+                        </span>
+                        <span className="text-sm text-muted-foreground">{screen.hint}</span>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </StaggerItem>
+              ))}
+            </Stagger>
+          </section>
+
+          <ResponsiveSupport />
+
+          <SeoMetaPanel section={hero} pagePath="/" loading={sections.loading} />
+
+          <AnalyticsSummary
+            events={events.data}
+            loading={events.loading}
+            error={events.error}
+          />
+        </main>
+      </Container>
+    </div>
   );
 }
