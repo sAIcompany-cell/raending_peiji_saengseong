@@ -10,6 +10,23 @@
  * **예외를 던지지 않고 목업으로 되돌린다** — 화면이 죽는 것보다 낫다(콘솔 경고만 남긴다).
  */
 
+import {
+  Logo,
+  ResponsiveSetting,
+  SeoMetadata,
+  Testimonial,
+  Cta,
+  CtaSummary
+} from "@/types";
+import {
+  mockLogoList,
+  mockResponsiveSettingList,
+  mockSeoMetadataList,
+  mockTestimonialList,
+  mockCtaList,
+  mockCtaSummary
+} from "./mock-data";
+
 const MOCK_FLAG = process.env.NEXT_PUBLIC_USE_MOCK_DATA;
 
 /** 목업 모드인가. "false" 를 명시했을 때만 실 API 를 쓴다. */
@@ -64,4 +81,48 @@ export async function sendData<T>(
     return { ok: true, data: mock(), source: "mock" };
   }
   return fetchData<T>(path, mock, { method, body: JSON.stringify(body) });
+}
+
+export async function listLogos(): Promise<ApiResult<Logo[]>> {
+  return fetchData("/api/fe253b445", () => mockLogoList);
+}
+
+export async function getLogo(id: string): Promise<ApiResult<Logo>> {
+  return fetchData(`/api/fe253b445/${id}`, () => mockLogoList.find(l => l.id === id) || mockLogoList[0]);
+}
+
+export async function listResponsiveSettings(): Promise<ApiResult<ResponsiveSetting[]>> {
+  return fetchData("/api/pc", () => mockResponsiveSettingList);
+}
+
+export async function getResponsiveSetting(id: string): Promise<ApiResult<ResponsiveSetting>> {
+  return fetchData(`/api/pc/${id}`, () => mockResponsiveSettingList.find(r => r.id === id) || mockResponsiveSettingList[0]);
+}
+
+export async function listSeoMetadata(): Promise<ApiResult<SeoMetadata[]>> {
+  return fetchData("/api/seo", () => mockSeoMetadataList);
+}
+
+export async function getSeoMetadata(id: string): Promise<ApiResult<SeoMetadata>> {
+  return fetchData(`/api/seo/${id}`, () => mockSeoMetadataList.find(s => s.id === id) || mockSeoMetadataList[0]);
+}
+
+export async function listTestimonials(): Promise<ApiResult<Testimonial[]>> {
+  return fetchData("/api/screen-ff2f57", () => mockTestimonialList);
+}
+
+export async function decideTestimonial(id: string, decision: unknown): Promise<ApiResult<{ success: boolean; id: string }>> {
+  return sendData(`/api/screen-ff2f57/${id}/decision`, decision, () => ({ success: true, id }));
+}
+
+export async function listCtas(): Promise<ApiResult<Cta[]>> {
+  return fetchData("/api/cta", () => mockCtaList);
+}
+
+export async function getCta(id: string): Promise<ApiResult<Cta>> {
+  return fetchData(`/api/cta/${id}`, () => mockCtaList.find(c => c.id === id) || mockCtaList[0]);
+}
+
+export async function getCtaSummary(): Promise<ApiResult<CtaSummary>> {
+  return fetchData("/api/cta/summary", () => mockCtaSummary);
 }
