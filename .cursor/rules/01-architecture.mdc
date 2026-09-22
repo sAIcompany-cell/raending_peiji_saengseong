@@ -35,6 +35,8 @@ alwaysApply: false
   - OG 미리보기 카드형
 - **방문 및 CTA 클릭 이벤트 측정**
   - 히어로 스크롤 추적형
+- **고객 후기 섹션 추가**
+  - 랜딩 페이지
 
 ## Entities (data model)
 

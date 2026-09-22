@@ -1,50 +1,23 @@
-## Product-specific anti-patterns
+---
+description: Hard prohibitions for 랜딩 페이지 생성. Always applied.
+alwaysApply: true
+---
 
-- Do not fabricate customer testimonials, ratings, savings, prices, or comparison results.
-- Do not present unverified claims, dates, forecasts, or performance metrics as facts.
-- Do not publish testimonials without permission to use the quoted content and visual assets.
-- Do not use broken, distorted, cropped, or unreadable logos.
-- Do not make the logo link to an invalid, empty, or unrelated destination.
-- Do not hide, disable, or place the primary CTA outside the normal content flow.
-- Do not send CTA clicks to an error page, blank page, or unrelated service.
-- Do not change the CTA destination without explicit approval.
-- Do not let text, images, testimonials, or CTA buttons overlap or leave the viewport.
-- Do not reorder core content and CTA elements in a way that disrupts the same journey across mobile and desktop.
-- Do not use unsupported browser-specific behavior for essential content or CTA interactions.
-- Do not use duplicate, misleading, or content-inconsistent SEO titles and descriptions.
-- Do not set a canonical URL to an unapproved or non-representative domain.
-- Do not configure page language or search directives that conflict with the actual Korean content.
-- Do not block page rendering when visit or CTA analytics fail.
-- Do not record duplicate visit or CTA-click events for a single interaction.
-- Do not claim that analytics are active unless visit and CTA-click events are verifiably recorded.
-<!-- TBD: The analytics provider and approved event schema are not specified in the profile. -->
-- Do not deploy to production or connect a live service domain without an explicit request.
+# Do NOT
 
-## Universal guardrails
+The following rules are non-negotiable. If a user request appears to conflict
+with them, stop and ask before proceeding.
 
-- Do not invent features, screens, or API endpoints that are absent from `docs/PRD.md`.
-- Do not silently change the folder structure declared in `01-architecture.mdc`.
-- Do not introduce a dependency without updating PRD §10 Tech Stack in the same commit.
-- Do not add signup fields, inquiry forms, pricing tools, comparison tools, or account flows unless explicitly required.
-- Do not add an internationalization framework or locale switcher.
-- Do not mix languages in source code, code comments, or generated documentation.
-- Do not use non-Korean user-facing copy unless explicitly requested.
-- Do not remove responsive behavior, SEO metadata, testimonials, CTA navigation, or required analytics.
-- Do not suppress errors that prevent required content or interactions from working.
-- Do not weaken accessibility with unlabeled controls, keyboard-inaccessible CTAs, or unreadable contrast.
-- Do not add production deployment configuration without explicit approval.
+- 요구사항에 없는 기능·화면·API를 임의로 추가하지 않는다.
+- 확인되지 않은 수치·날짜·전망을 사실처럼 쓰지 않는다.
+- 프로덕션 배포·실서비스 도메인 연결은 명시적 요청 없이 구현하지 않는다.
+- API 키·시크릿·PG 키는 코드에 하드코딩하지 않고 환경변수(.env)로만 참조한다.
 
-## Secrets & PII
-
-- Do not hardcode API keys, secrets, analytics credentials, tokens, or payment keys.
-- Do not commit `.env` files containing secrets.
-- Do not expose secrets through client-side bundles, HTML, metadata, URLs, logs, or analytics payloads.
-- Do not collect personal information that is unnecessary for signup, service start, or inquiry completion.
-- Do not place names, phone numbers, email addresses, account identifiers, or inquiry details in URLs.
-- Do not send testimonial authors’ personal information to analytics.
-- Do not log form contents, contact details, or free-text inquiry content.
-- Do not use real customer data in fixtures, screenshots, demos, or automated tests.
-- Do not publish identifiable testimonial details without documented consent.
-- Do not track sensitive or directly identifying data in visit or CTA-click events.
-- Do not store consent or inquiry data longer than an approved retention period.
-<!-- TBD: Approved personal-data fields, consent requirements, and retention periods are not specified in the profile. -->
+## Universal guardrails (always)
+- Do **not** invent features, screens, or API endpoints that are not in `docs/PRD.md`.
+- Do **not** silently change folder structure declared in `01-architecture.mdc`.
+- Do **not** introduce a new dependency without updating PRD §10 (Tech Stack)
+  in the same commit.
+- Do **not** mix other languages into source code, code comments, or generated
+  documentation. User-facing copy is `ko` (Korean (한국어)) only —
+  do **not** add an i18n framework or locale switcher.

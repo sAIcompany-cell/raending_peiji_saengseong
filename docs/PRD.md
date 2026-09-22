@@ -1,498 +1,294 @@
 # PRD: 랜딩 페이지 생성
 
-| Metadata | Value |
-|---|---|
-| Project name | 랜딩 페이지 생성 |
-| One-liner | Landing page that enables visitors to quickly understand the service and proceed to application/inquiry by clicking the CTA button. |
-| Device target | web_app |
-| Device target detail | [TBD: no additional device, viewport, or browser details were provided] |
-| IDE target | cubivora |
-| Locales | `ko` |
-| Default locale | `ko` |
-| UI language requirement | Korean is the only supported UI language for the MVP. Do not add additional locale catalogs unless explicitly requested. |
+> 📌 Device: **Web (browser)** · 🧠 Coding IDE: **Cubivora**
+
+> Cubivora Spec-First PRD (auto-generated). Treat this document as the single source of truth during implementation.
+
+## 1. One-liner
+
+방문자가 서비스를 빠르게 이해하고 CTA 버튼을 눌러 신청/문의까지 이어지게 하는 랜딩페이지
+
+## 2. Out of scope
+
+- _(none)_
+
+
+## 3. Target users
+
+- 가구 구매 예정 소비자
+- 가구 가격 비교 고객
+- 매장 방문이 번거로운 사람
+
+
+### Target persona — depth
+
+가구 구매를 계획하고 있으며, 자신의 니즈에 맞는 제품을 합리적으로 비교하고 매장 방문을 줄이고 싶은 소비자입니다.
+
+## 3.5 Killer differentiator
+
+가구 가격을 비교해 고객의 니즈에 맞는 제품을 찾고 구매할 수 있도록 도와줍니다.
+
+## 4. Core features
+
+- **[MUST]** 상단 로고 표시 — 페이지 상단에 로고를 표시한다.
+  - 🔎 Detail: 로고 애니메이션 효과
+  - 🔎 Detail: 반응형 로고 크기
+  - 🔎 Detail: 로고 클릭 가능
+  - 🔎 Detail: 테마별 로고 전환
+- **[MUST]** 모바일/PC 반응형 지원 — 모바일과 PC 환경 모두에서 정상적으로 표시된다.
+  - 🔎 Detail: 브레이크포인트 기준 설정
+  - 🔎 Detail: 해상도별 이미지 전환
+- **[MUST]** 기본 SEO 메타 태그 적용 — 기본 SEO 메타 태그를 페이지에 적용한다.
+  - 🔎 Detail: SNS 공유 카드 설정
+- **[MUST]** 사용자 후기 섹션 — 실제 사용자의 긍정적인 평가와 결과를 시각적으로 표시하여 신뢰도를 높인다.
+  - 🔎 Detail: 실제 사용자의 긍정적인 평가와 결과를 시각적으로 표시하여 신뢰도를 높인다.
+- **[MUST]** CTA 버튼 클릭 — CTA 클릭 시 회원가입 또는 서비스 시작 페이지로 이동한다.
+  - 🔎 Detail: 클릭 후 이동 경로
+  - 🔎 Detail: 버튼 배치 위치
+  - 🔎 Detail: 유인 배지, 라벨
+- **[MUST]** 방문 및 CTA 클릭 이벤트 측정 — 방문 및 CTA 클릭 이벤트를 측정한다.
+  - 🔎 Detail: Google Analytics 연동
+  - 🔎 Detail: 에러 페이지로 이동
+- **[MUST]** 고객 후기 섹션 추가 — 서비스에 대한 신뢰도를 높이고 구체적인 강점을 시각적으로 전달하기 위해 '고객 후기' 섹션을 추가합니다. 이 섹션에는 세 명의 고객 후기 카드가 포함됩니다. 각 후기 카드는 고객 이름, 5점 만점의 별점, 그리고 한 줄 코멘트로 구성됩니다. 초기 데이터는 다음과 같습니다: - 김지현 님: 별점 5점, "설치 다음 날 바로 문의가 들어왔어요" - 박준호 님: 별점 4점, "디자인이 깔끔해서 신뢰가 갑니다" - 이서연 님: 별점 5점, "문의 폼이 간단해 전환율이 올랐어요" 화면 구성은 PC 환경에서는 세 개의 후기 카드가 가로로
+
+## 5. Screens / URLs
+
+| Route | Page | Purpose |
+|-------|------|---------|
+| `/hero` | Hero 섹션 | 핵심 가치 제안과 무료로 시작하기 CTA 버튼 표시 |
+| `/screen` | 문제 제시 섹션 | 사용자가 겪는 문제를 제시하여 공감 유도 |
+| `/screen-2` | 서비스 소개 섹션 | 아이디어 입력부터 기획안 생성까지의 흐름 안내 |
+| `/screen-3` | 핵심 장점 섹션 | 쉽게 시작, 빠른 정리, 개발에 활용 등 핵심 장점 전달 |
+| `/cta` | 최종 CTA 섹션 | 기획안 만들기 버튼으로 전환 유도 |
+
+## 5.5 Per-feature screens
+
+### 🧩 Screens for the “CTA 버튼 클릭” feature
+- 히어로 풀스크린형
+
+### 🧩 Screens for the “상단 로고 표시” feature
+- 고정 헤더 바형
+
+### 🧩 Screens for the “사용자 후기 섹션” feature
+- 사용자 후기 섹션 화면 — 실제 사용자의 긍정적인 평가와 결과를 시각적으로 표시하여 신뢰도를 높인다.
+
+### 🧩 Screens for the “모바일/PC 반응형 지원” feature
+- 풀스크린 스크롤형
+
+### 🧩 Screens for the “기본 SEO 메타 태그 적용” feature
+- OG 미리보기 카드형
+
+### 🧩 Screens for the “방문 및 CTA 클릭 이벤트 측정” feature
+- 히어로 스크롤 추적형
+
+### 🧩 Screens for the “고객 후기 섹션 추가” feature
+- 랜딩 페이지
+
+## 6. Data model
+
+### 6.1 Entities (as captured)
+
+### LandingPageSection
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| id | string |  |  |
+| type | string |  |  |
+| title | string |  |  |
+| content | string |  |  |
+| order | number |  |  |
+
+### Testimonial
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| id | string |  |  |
+| quote | string |  |  |
+| author | string |  |  |
+| result | string |  |  |
+
+### AnalyticsEvent
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| name | string |  |  |
+| pagePath | string |  |  |
+| occurredAt | datetime |  |  |
+
+
+### 6.2 PostgreSQL schema
+
+```sql
+CREATE TABLE landing_page_sections (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  type TEXT,
+  title TEXT,
+  content TEXT,
+  order NUMERIC,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+CREATE INDEX idx_landing_page_sections_created_at ON landing_page_sections (created_at);
+
+CREATE TABLE testimonials (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  quote TEXT,
+  author TEXT,
+  result TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+CREATE INDEX idx_testimonials_created_at ON testimonials (created_at);
+
+CREATE TABLE analytics_events (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  name TEXT,
+  page_path TEXT,
+  occurred_at TIMESTAMPTZ,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+CREATE INDEX idx_analytics_events_occurred_at ON analytics_events (occurred_at);
+CREATE INDEX idx_analytics_events_created_at ON analytics_events (created_at);
+```
+
+### 6.3 ERD
+
+```mermaid
+erDiagram
+    landing_page_sections {
+        uuid id PK
+        text type
+        text title
+        text content
+        numeric order
+        timestamptz created_at
+    }
+    testimonials {
+        uuid id PK
+        text quote
+        text author
+        text result
+        timestamptz created_at
+    }
+    analytics_events {
+        uuid id PK
+        text name
+        text page_path
+        timestamptz occurred_at
+        timestamptz created_at
+    }
+```
+
+<!-- TBD: no foreign key was detected — no field name ends with `Id`/`_id` matching another entity, so the ERD shows tables without relationships. -->
+
+## 7. API design (backend contract)
+
+| Method | Path | Request body | 200 response | Errors | Auth | Source |
+|--------|------|--------------|--------------|--------|------|--------|
+| `POST` | `/landingpagesections` | <!-- TBD: no entity in entities[] matches this feature, so the request body is unknown --> | {id, created_at} | 400 | `guest` | profile |
+| `GET` | `/landingpagesections` | _(no body)_ | [{...}] | 401 | `guest` | profile |
+| `POST` | `/testimonials` | <!-- TBD: no entity in entities[] matches this feature, so the request body is unknown --> | {id, created_at} | 400 | `guest` | profile |
+| `GET` | `/testimonials` | _(no body)_ | [{...}] | 401 | `guest` | profile |
+| `POST` | `/analyticsevents` | <!-- TBD: no entity in entities[] matches this feature, so the request body is unknown --> | {id, created_at} | 400 | `guest` | profile |
+| `GET` | `/analyticsevents` | _(no body)_ | [{...}] | 401 | `guest` | profile |
+| `GET` | `/api/fe253b445` | _(no body)_ | `{ items: object[], total: number }` | 400 invalid payload, 422 rule violation | `guest` | derived |
+| `GET` | `/api/fe253b445/{id}` | _(no body)_ | `object` | 400 invalid payload, 404 not found, 422 rule violation | `guest` | derived |
+| `GET` | `/api/pc` | _(no body)_ | `{ items: object[], total: number }` | 400 invalid payload, 422 rule violation | `guest` | derived |
+| `GET` | `/api/pc/{id}` | _(no body)_ | `object` | 400 invalid payload, 404 not found, 422 rule violation | `guest` | derived |
+| `GET` | `/api/seo` | _(no body)_ | `{ items: object[], total: number }` | 400 invalid payload, 422 rule violation | `guest` | derived |
+| `GET` | `/api/seo/{id}` | _(no body)_ | `object` | 400 invalid payload, 404 not found, 422 rule violation | `guest` | derived |
+| `GET` | `/api/screen-ff2f57` | _(no body)_ | `{ items: object[], total: number }` | 400 invalid payload, 409 conflicting state, 422 rule violation | `guest` | derived |
+| `POST` | `/api/screen-ff2f57/{id}/decision` | <!-- TBD: no entity in entities[] matches this feature, so the request body is unknown --> | `object` | 400 invalid payload, 404 not found, 409 conflicting state, 422 rule violation | `guest` | derived |
+| `GET` | `/api/cta` | _(no body)_ | `{ items: object[], total: number }` | 400 invalid payload, 422 rule violation | `guest` | derived |
+| `GET` | `/api/cta/{id}` | _(no body)_ | `object` | 400 invalid payload, 404 not found, 422 rule violation | `guest` | derived |
+| `GET` | `/api/cta/summary` | _(no body)_ | `object` | 400 invalid payload, 422 rule violation | `guest` | derived |
+| `POST` | `/api/983bc01b` | <!-- TBD: no entity in entities[] matches this feature, so the request body is unknown --> | `object` | 400 invalid payload, 422 rule violation | `guest` | derived |
+
+> Rows marked `derived` come from `features` + `entities`, not from an explicit
+> API declaration. They are the contract to implement unless the user says otherwise.
+
+## 8. State machines
+
+### `screen-ff2f57` — 사용자 후기 섹션
+
+- **State holder**: _(no column declared)_
+- **Derived from**: action shape `judge` (no status column declared)
+
+| From | To | Trigger |
+|------|----|---------|
+| `submitted` | `under_review` | reviewer opens the item |
+| `under_review` | `approved` | reviewer approves |
+| `under_review` | `rejected` | reviewer rejects (reason required) |
+| `rejected` | `submitted` | requester resubmits |
+
+<!-- TBD: `screen-ff2f57` has no status column in entities[] — add one (TEXT NOT NULL) before implementing these transitions. -->
+
+## 9. Authentication & permissions
+
+- Login required: **no**
+- Methods: none
+- Roles: user
+
+### 9.1 RBAC matrix
+
+| Resource | Feature | `user` |
+|----------|---------|------|
+| `/api/fe253b445` | 상단 로고 표시 | read (own + public) |
+| `/api/pc` | 모바일/PC 반응형 지원 | read (own + public) |
+| `/api/seo` | 기본 SEO 메타 태그 적용 | read (own + public) |
+| `/api/screen-ff2f57` | 사용자 후기 섹션 | read (own submission) |
+| `/api/cta` | CTA 버튼 클릭 | read (own + public) |
+| `/api/cta` | 방문 및 CTA 클릭 이벤트 측정 | read (own aggregate) |
+| `/api/983bc01b` | 고객 후기 섹션 추가 | create, read (own) |
+
+<!-- TBD: no operator role found in auth.roles — every row below is end-user only. If an admin console is planned, the operator role must be declared first. -->
+
+## 10. Failure & fallback protocol
+
+<!-- TBD: no external integration, upload, or notification is declared — there is no third-party failure path to define yet. -->
+
+## 11. Monetization & analytics (impact on code)
+
+- **Model**: Ad-supported
+- **Implementation notes**:
+  - Requires ad SDK and ad placement UI.
+
+
+## 12. External integrations (PG · OAuth · MCP)
+
+### Payment (PG)
+- No PG integration in MVP.
+
+### Social login (OAuth)
+- No social login (email-only or anonymous).
+
+### MCP (optional)
+- No MCP integration.
+
+
+## 13. Tech stack
+
+| Layer | Choice |
+|-------|--------|
+| Device | Web (browser) |
+| Locales | Korean (한국어) (`ko`) — single language, no i18n framework |
 | Frontend | Next.js, TypeScript, Tailwind CSS |
 | Backend | 없음 |
 | Database | 없음 |
-| Deployment | Build configuration suitable for static hosting; production deployment is excluded. |
-| Visual direction | Clean and simple structure, white base, one point color, large headings, short sentences, and one message per screen. |
-| Design tone | Trustworthy and clean |
+| Deployment | 정적 호스팅을 고려한 빌드 구성, 프로덕션 배포는 제외 |
 
-## 1. Product Overview
+## 14. Acceptance criteria
 
-### Product purpose
+1. **Given** 방문자가 랜딩 페이지를 연다 **When** 모바일 또는 PC 화면에서 페이지를 확인한다 **Then** 콘텐츠와 CTA가 화면 너비에 맞게 깨지지 않고 표시된다
+2. **Given** 방문자가 최종 CTA 버튼을 본다 **When** CTA 버튼을 클릭한다 **Then** 회원가입 또는 서비스 시작 페이지로 이동한다
+3. **Given** 방문자가 랜딩 페이지에 접속하거나 CTA 버튼을 클릭한다 **When** 각 이벤트가 발생한다 **Then** 방문 및 CTA 클릭 이벤트가 기록된다
 
-This product is a Korean, responsive web landing page for consumers who are considering furniture purchases. It must help visitors:
+## 15. Do NOT (AI prohibitions)
 
-1. Understand that comparing furniture prices can be difficult.
-2. Understand that store visits can be inconvenient.
-3. Learn that the service helps them find furniture products matching their needs by comparing prices.
-4. Continue to the designated sign-up or service-start destination through a CTA.
+- 요구사항에 없는 기능·화면·API를 임의로 추가하지 않는다.
+- 확인되지 않은 수치·날짜·전망을 사실처럼 쓰지 않는다.
+- 프로덕션 배포·실서비스 도메인 연결은 명시적 요청 없이 구현하지 않는다.
+- API 키·시크릿·PG 키는 코드에 하드코딩하지 않고 환경변수(.env)로만 참조한다.
 
-### User problem
 
-- Furniture buyers have difficulty comparing prices across multiple products.
-- Visiting furniture stores in person is inconvenient.
-- Consumers want to compare products rationally before purchasing.
-- The landing page must communicate this value quickly and clearly.
+## 16. Design / references
 
-### Killer differentiator
-
-The service helps customers find and purchase furniture products that match their needs by comparing furniture prices.
-
-### Product principles
-
-- Use short Korean copy focused on furniture price comparison and reduced store visits.
-- Keep one primary message per section.
-- Use a white-based visual system with one point color.
-- Make the CTA visible and usable on both mobile and PC.
-- Do not include unverified numerical claims, dates, customer counts, savings amounts, or forecasts.
-- Use actual testimonial content only when it is supplied or approved. Do not fabricate reviews or results.
-
-### MVP success measures
-
-| KPI | Target | Measurement window |
-|---|---|---|
-| 랜딩 페이지 방문 수 | [미정: 목표 수치가 프로필에 제공되지 않음] | 30d |
-| CTA 클릭률 | [미정: 목표 수치가 프로필에 제공되지 않음] | 30d |
-
-## 2. Out of Scope
-
-- Furniture product search, filtering, comparison, or purchasing functionality.
-- Furniture catalog, product detail pages, shopping cart, or checkout.
-- User account creation, login, OAuth, or role-based access control.
-- Actual sign-up or service-start implementation after the CTA destination.
-- Admin CMS for editing sections or testimonials.
-- Production deployment.
-- Production domain connection.
-- Payment processing or payment gateway integration.
-- MCP servers.
-- AI model integration.
-- Arbitrarily adding features, screens, or APIs not specified in this PRD.
-- Presenting unverified figures, dates, forecasts, review counts, savings, or performance claims as facts.
-- Hardcoding API keys, secrets, ad keys, analytics keys, or payment gateway keys.
-- Adding user-generated testimonials without an approved content source.
-- Supporting UI languages other than Korean in the MVP.
-
-## 3. Target Users
-
-| User group | Need | Landing-page message implication |
-|---|---|---|
-| Consumers planning furniture purchases | Understand where to start and what to compare | Explain the service in simple terms and expose a clear CTA. |
-| Customers comparing furniture prices | Compare options rationally before purchase | Emphasize furniture price comparison and matching products to needs. |
-| People who find store visits inconvenient | Reduce unnecessary offline visits | Communicate that the service can help them explore suitable furniture before visiting stores. |
-
-### Primary persona
-
-Consumers planning to purchase furniture who want to rationally compare products matching their needs and reduce store visits.
-
-### User journey
-
-1. Visitor opens a landing-page section.
-2. Visitor sees the logo and understands the service identity.
-3. Visitor identifies with the furniture price-comparison and store-visit problem.
-4. Visitor learns how the service helps.
-5. Visitor reviews approved testimonials and results.
-6. Visitor clicks the hero or final CTA.
-7. Visitor is navigated to the designated sign-up or service-start page.
-8. The visit and CTA click are recorded independently of the navigation result.
-
-### Content constraints
-
-- All user-facing MVP copy must be Korean.
-- English identifiers may be used in code and data fields.
-- Testimonials must represent actual user experiences and specific results only when verified.
-- Missing brand assets, CTA destination, approved copy, testimonial content, and point color are `[TBD]` items and must not be invented.
-
-## 4. Core Features (Features)
-
-| ID | Feature | Priority | Implementation requirement | Definition of done |
-|---|---|---:|---|---|
-| F1 | Logo display at top | Must | Display the logo in a fixed or persistent top header. Preserve aspect ratio and make it clickable. | Logo is visible at the top, is not clipped or distorted across supported viewport sizes, and clicking it returns to the landing page start position or representative page destination. Exact logo asset and representative destination: `[TBD: not provided]`. |
-| F2 | Mobile/PC responsive support | Must | Build responsive layouts for mobile and PC using Next.js and Tailwind CSS. Keep section order and CTA flow consistent. | Text, images, controls, and CTA do not overlap, overflow, or become unusable when the viewport width changes. Supported browser list: `[TBD: not provided]`. |
-| F3 | Basic SEO meta tags | Must | Add a unique page title, meta description, canonical URL, language metadata, and social share metadata. | The rendered page contains service-relevant Korean title and description metadata, a canonical URL, and Korean language settings. Exact canonical domain and OG image: `[TBD: production domain and asset not provided]`. |
-| F4 | User testimonials section | Must | Add a dedicated testimonial section showing approved positive reviews and concrete results related to furniture price comparison or reduced store visits. | Approved testimonial text and visual assets render without missing or broken content on mobile and PC. Testimonial source and final content: `[TBD: no approved testimonial content was provided]`. |
-| F5 | CTA button click | Must | Place a primary CTA in the hero and final CTA sections. On click, record the CTA event and navigate to the designated sign-up or service-start destination. | CTA works on mobile and PC and does not navigate to an invalid, blank, or error destination. Exact destination URL/path: `[TBD: not provided]`. |
-| F6 | Visit and CTA click event tracking | Must | Record separate visit and CTA click events. Tracking failures must not block page rendering or CTA navigation. | A page visit creates a `page_view` event and a CTA click creates a `cta_click` event; the events use consistent names and can be distinguished for CTA click-rate calculation. Analytics provider and server persistence: `[TBD: not provided]`. |
-| F7 | Section-based landing-page flow | Must | Implement the specified hero, problem, service introduction, key benefits, testimonial, and final CTA content flow without adding unrelated screens. | Visitors can understand the service from top to bottom, with one primary message per section and a CTA at the intended conversion points. |
-
-### Required section content
-
-| Section | Required content |
-|---|---|
-| Hero | Service value proposition, furniture price-comparison benefit, and a free-start CTA. Exact Korean headline and CTA label: `[TBD: approved copy not provided]`. |
-| Problem statement | Difficulty comparing furniture prices and inconvenience of visiting stores. |
-| Service introduction | Explain the service flow from visitor need/input to finding or comparing suitable furniture. Do not imply that this landing page itself performs product matching. |
-| Key benefits | Communicate easy start, fast organization of comparison information, and usefulness for subsequent development/service use only if approved by product stakeholders. Exact copy: `[TBD: approved benefit copy not provided]`. |
-| Testimonials | Approved real-user reviews and specific results. Do not generate fictional names, quotes, percentages, or savings. |
-| Final CTA | Repeat the primary conversion action with a create-plan or service-start CTA only if that is the approved destination action. Exact label and destination: `[TBD: not provided]`. |
-
-## 5. Screens & Routes
-
-The routes below are the specified landing-page section routes. Implement them as section-level routes or navigable page anchors according to the Cubivora project routing convention. Do not add other product screens.
-
-| Route | Screen/section | Purpose | Required behavior |
-|---|---|---|---|
-| `/hero` | Hero section | Display the core value proposition and free-start CTA button. | Show logo/header context, primary headline, supporting sentence, and CTA. |
-| `/screen` | Problem statement section | Present user pain points to drive empathy. | Explain furniture price comparison difficulty and store-visit inconvenience. |
-| `/screen-2` | Service introduction section | Guide the flow from idea/input to plan generation. | Explain the service flow without implementing the downstream service. |
-| `/screen-3` | Key benefits section | Communicate easy start, fast organization, and development utilization. | Use concise benefit blocks with responsive layout. |
-| `/cta` | Final CTA section | Drive conversion with a create-plan button. | Record CTA click and navigate to the configured destination. |
-
-### Required visual structures
-
-- Fixed header bar type for the logo.
-- Full-screen or section-based scroll presentation for the responsive landing flow.
-- Hero full-screen presentation for the CTA entry point.
-- Dedicated user testimonials section.
-- OG preview card metadata for social sharing.
-- Hero scroll/visit tracking behavior for analytics events.
-
-### Responsive behavior
-
-- Preserve the content order:
-  1. Hero
-  2. Problem statement
-  3. Service introduction
-  4. Key benefits
-  5. Testimonials
-  6. Final CTA
-- On narrow screens, stack columns vertically rather than allowing overlap.
-- Keep the primary CTA reachable without requiring precision gestures.
-- Use responsive image sizing and preserve image aspect ratios.
-- Exact breakpoint values and image-resolution switching rules: `[TBD: not provided]`.
-- Do not hide the core value proposition or CTA solely because the viewport is narrow.
-
-### Navigation behavior
-
-- Logo click must return to the landing-page start position or configured representative destination.
-- Hero CTA and final CTA must use the same configured CTA destination unless a different destination is explicitly provided.
-- Exact CTA destination: `[TBD: sign-up or service-start URL/path not provided]`.
-- If the destination is not configured, fail safely during development with a visible implementation error and do not silently navigate to an arbitrary page.
-
-## 6. Data Model
-
-The MVP has no configured backend or database. These types define the content and analytics contract for static content, client-side rendering, and any future API adapter. Static seed data must be stored in typed local content modules rather than hardcoded throughout JSX.
-
-### `LandingPageSection`
-
-| Field | Type | Required | Description |
-|---|---|---:|---|
-| `id` | `string` | No | Stable section identifier. |
-| `type` | `string` | No | Section type such as `hero`, `problem`, `service_intro`, `benefits`, `testimonials`, or `cta`. |
-| `title` | `string` | No | Korean section title. |
-| `content` | `string` | No | Korean section body content or serialized content reference. |
-| `order` | `number` | No | Display order. |
-
-### `Testimonial`
-
-| Field | Type | Required | Description |
-|---|---|---:|---|
-| `id` | `string` | No | Stable testimonial identifier. |
-| `quote` | `string` | No | Approved Korean user quote. |
-| `author` | `string` | No | Approved author display name or anonymized label. |
-| `result` | `string` | No | Approved concrete result connected to price comparison or reduced store visits. |
-
-Testimonial content is potentially personal information if it identifies a real person. The MVP should use approved, minimally identifying display values. Server retention period: `[TBD: no server-side testimonial storage decision was provided]`.
-
-### `AnalyticsEvent`
-
-| Field | Type | Required | Description |
-|---|---|---:|---|
-| `name` | `string` | Yes | `page_view` or `cta_click`. |
-| `pagePath` | `string` | Yes | Page or section path where the event occurred. |
-| `occurredAt` | `datetime` | Yes | Event timestamp in ISO 8601 format. |
-
-If analytics events are persisted by a future server, retention period is `[TBD: analytics retention policy was not provided]`. Do not collect names, emails, account identifiers, or unnecessary personal data for these events.
-
-### `CtaConfig`
-
-| Field | Type | Required | Description |
-|---|---|---:|---|
-| `label` | `string` | Yes | Korean CTA label. |
-| `destination` | `string` | Yes | Absolute URL or application path for sign-up/service start. |
-| `trackingName` | `string` | Yes | Must be `cta_click`. |
-| `ariaLabel` | `string` | Yes | Accessible Korean label describing the action. |
-
-Configured CTA label and destination: `[TBD: not provided]`.
-
-### `SeoMetadata`
-
-| Field | Type | Required | Description |
-|---|---|---:|---|
-| `title` | `string` | Yes | Unique Korean document title. |
-| `description` | `string` | Yes | Korean service/value summary. |
-| `canonicalUrl` | `string` | Yes | Canonical landing-page URL. |
-| `locale` | `string` | Yes | Must be `ko_KR` for the Korean UI. |
-| `ogImageUrl` | `string` | No | Social share image URL. |
-
-Canonical URL and OG image asset: `[TBD: production domain and approved social image were not provided]`.
-
-## 7. API Design (Backend Contract)
-
-The declared backend is none and the database is none. Therefore, the MVP must remain deployable as a static frontend. The endpoints below are the specified backend contract for a future or externally hosted content/analytics service; do not create an unrequested production backend.
-
-All endpoints use JSON and return JSON. `guest` means no authentication is required.
-
-| Method | Path | Purpose | Request body | Success response | Error codes | Auth |
-|---|---|---|---|---|---|---|
-| `POST` | `/landingpagesections` | Create a landing-page section record. | `{ "type": "string", "title": "string", "content": "string", "order": 0 }` | `{ "id": "string", "created_at": "datetime" }` | `400` | `guest` |
-| `GET` | `/landingpagesections` | List landing-page sections in display order. | None | `[ { "id": "string", "type": "string", "title": "string", "content": "string", "order": 0 } ]` | `401` | `guest` |
-| `PUT` | `/landingpagesections/{id}` | Update a landing-page section. | Partial `LandingPageSection` object. | Updated `LandingPageSection` | `400`, `404` | `guest` |
-| `DELETE` | `/landingpagesections/{id}` | Delete a landing-page section. | None | `{ "deleted": true }` | `404` | `guest` |
-| `POST` | `/testimonials` | Create an approved testimonial record. | `{ "quote": "string", "author": "string", "result": "string" }` | `{ "id": "string", "created_at": "datetime" }` | `400` | `guest` |
-| `GET` | `/testimonials` | List testimonials for the landing page. | None | `[ { "id": "string", "quote": "string", "author": "string", "result": "string" } ]` | `401` | `guest` |
-| `POST` | `/analyticsevents` | Record a visit or CTA click event. | `{ "name": "page_view|cta_click", "pagePath": "string", "occurredAt": "datetime" }` | `{ "id": "string", "created_at": "datetime" }` | `400` | `guest` |
-| `GET` | `/analyticsevents` | Retrieve recorded analytics events for reporting. | None | `[ { "name": "string", "pagePath": "string", "occurredAt": "datetime" } ]` | `401` | `guest` |
-
-### Static MVP behavior
-
-- Page content must render from local typed seed data when no backend is configured.
-- Analytics calls must be non-blocking.
-- A failed analytics request must not prevent the page from rendering or prevent CTA navigation.
-- The frontend may expose an analytics adapter with the endpoint contract above, but no API key or secret may be embedded in client code.
-- API base URL, if needed, must come from an environment variable such as `NEXT_PUBLIC_API_BASE_URL`; exact environment configuration is `[TBD: hosting/API provider not provided]`.
-
-## 8. Auth & Permissions
-
-| Area | Decision |
-|---|---|
-| Authentication required | No |
-| Auth method | `none` |
-| Roles | None |
-| Guest access | All landing-page sections and CTA interactions are public. |
-| Content management permissions | Not implemented in this MVP. |
-| Analytics write permission | Guest/client event recording is permitted by the declared contract. |
-| Analytics read permission | The profile marks the endpoint scope as `guest`; implement no authenticated dashboard because no dashboard is specified. |
-
-Additional rules:
-
-- Do not add login, signup forms, OAuth buttons, account sessions, or role checks to the landing page.
-- Do not collect personal information through the landing page unless a future explicit requirement adds a form.
-- The CTA only navigates to the configured downstream destination; it does not implement authentication itself.
-- If the downstream destination requires authentication, that behavior belongs to the downstream service and is outside this MVP.
-
-## 9. External Integrations (PG, OAuth, MCP, AI models)
-
-### Payment gateway
-
-- Enabled: No.
-- Provider: Not applicable.
-- Payment modes: None.
-- Sandbox-first: Not applicable.
-- Webhooks: Not required.
-- Payment environment variables: None.
-- Do not add payment or checkout functionality.
-
-### OAuth
-
-- Enabled: No.
-- Providers: None.
-- Callback path: None.
-- OAuth environment variables: None.
-- Do not add social login or account authorization.
-
-### MCP
-
-- Enabled: No.
-- Servers: None.
-- Do not configure MCP servers.
-
-### AI models
-
-- No AI model integration is specified.
-- Do not add model APIs, prompt execution, generated testimonials, or AI-generated product claims.
-
-### Analytics
-
-The feature profile requires visit and CTA click event tracking, while `monetization.analytics_tracking` is `false`. Treat this as product event measurement required for the landing-page feature, not as an advertising or third-party analytics integration.
-
-- Required events:
-  - `page_view`: recorded when the landing page is viewed.
-  - `cta_click`: recorded when a CTA is activated.
-- Provider: `[TBD: analytics provider was not provided]`.
-- Do not claim Google Analytics is integrated.
-- If a provider is later selected, credentials must be supplied through environment variables.
-- Tracking failure must never block rendering or CTA navigation.
-
-### Advertising
-
-- Monetization model: Ads.
-- Ads required: Yes.
-- Ad provider, placement, format, and ad configuration: `[TBD: not provided]`.
-- Do not invent an ad provider, ad copy, ad slot dimensions, or ad network key.
-- Do not allow an unresolved ad configuration to obscure the primary value proposition or CTA.
-
-## 10. Monetization & Analytics
-
-### Monetization
-
-- Model: Ads.
-- Payment: Not required.
-- Subscriptions: Not specified and must not be added.
-- The MVP must reserve monetization integration for ads, but the exact provider and placements remain `[TBD: required advertising details were not provided]`.
-- Never hardcode advertising keys or secrets. Use environment variables when a provider is specified.
-
-### Analytics event schema
-
-| Event name | Trigger | Required properties |
-|---|---|---|
-| `page_view` | Landing page becomes viewable. | `name`, `pagePath`, `occurredAt` |
-| `cta_click` | Visitor activates any primary CTA. | `name`, `pagePath`, `occurredAt` |
-
-### KPI calculation
-
-- Landing-page visits: count `page_view` events.
-- CTA clicks: count `cta_click` events.
-- CTA click rate for the `30d` window: `cta_click events / page_view events`.
-- KPI target values remain `[미정: 목표 수치가 프로필에 제공되지 않음]`.
-- Event naming and payload structure must remain consistent across all CTA placements.
-- Analytics failures must be caught and logged without interrupting the user flow.
-
-## 11. Acceptance Criteria (Given/When/Then)
-
-### AC1 — Responsive landing-page rendering
-
-- **Given** a visitor opens the landing page
-- **When** `GET /landingpagesections` is requested or local static content is rendered on a mobile or PC screen
-- **Then** the content and CTA display without breaking and fit the available screen width
-- **And** text, images, and buttons do not overlap or become clipped when the viewport width changes.
-
-### AC2 — Hero and final CTA navigation
-
-- **Given** a visitor sees the hero or final CTA button
-- **When** `POST /analyticsevents` is attempted for `cta_click` and the CTA button is clicked
-- **Then** the visitor navigates to the configured sign-up or service-start destination
-- **And** the destination is not an empty, invalid, or error page.
-
-### AC3 — Visit tracking
-
-- **Given** a visitor accesses the landing page
-- **When** `POST /analyticsevents` is called with `name: "page_view"` and the current `pagePath`
-- **Then** a visit event is recorded or handed to the configured analytics adapter
-- **And** the event is distinguishable from `cta_click`.
-
-### AC4 — CTA tracking failure isolation
-
-- **Given** a visitor clicks a CTA
-- **When** `POST /analyticsevents` fails, times out, or the analytics provider is unavailable
-- **Then** the CTA navigation still proceeds to the configured destination
-- **And** the analytics failure does not prevent page rendering or interaction.
-
-### AC5 — Logo behavior
-
-- **Given** a visitor views any landing-page section
-- **When** the header is rendered
-- **Then** the logo is visible at the top and maintains its aspect ratio without clipping or distortion
-- **And** when the logo is clicked, the visitor returns to the landing-page start position or configured representative page.
-
-### AC6 — SEO metadata
-
-- **Given** a search engine crawler or browser loads the landing page
-- **When** the page document is rendered
-- **Then** it contains a unique Korean title, a Korean service/value meta description, a canonical URL, and Korean language metadata
-- **And** the metadata matches the actual landing-page content.
-
-### AC7 — Testimonials
-
-- **Given** approved testimonial records are available from local content or `GET /testimonials`
-- **When** the testimonial section is rendered
-- **Then** each testimonial displays its quote, author label, and result without broken text or missing images
-- **And** each result relates to furniture price comparison or reduced store-visit burden.
-
-### AC8 — Public access and no authentication
-
-- **Given** an unauthenticated visitor opens any specified route
-- **When** `GET /landingpagesections` or `GET /testimonials` is requested
-- **Then** the public landing-page content can be displayed without login, OAuth, or role verification
-- **And** the implementation does not expose an account creation or login requirement.
-
-### AC9 — Static-hosting compatibility
-
-- **Given** the project is built using the configured Next.js and TypeScript setup
-- **When** the static hosting build command is run
-- **Then** the landing-page assets and specified section routes are generated in a static-hosting-compatible form
-- **And** no production deployment or production domain connection is performed.
-
-## 12. AI Workflow (IDE-specific)
-
-The IDE target is `cubivora`. The repository also identifies the coding tool as Cursor, so use Cubivora’s project workflow together with Cursor-compatible rule files where the environment supports them.
-
-### Required planning workflow
-
-1. Read this PRD before editing code.
-2. Inspect the existing repository structure and preserve existing conventions.
-3. Create a short implementation plan covering:
-   - Page and section structure.
-   - Typed local content models.
-   - Responsive layout.
-   - SEO metadata.
-   - CTA destination configuration.
-   - Non-blocking analytics adapter.
-   - Static-hosting build behavior.
-4. Identify every `[TBD: ...]` item before implementation.
-5. Implement only specified functionality.
-6. Run type checks, linting, build validation, and route checks.
-7. Review the implementation against every acceptance criterion.
-
-### Cubivora project artifacts
-
-Create or update the following project guidance artifacts if supported by the repository:
-
-- `.cursor/rules/product-prd.mdc`
-  - Treat this PRD as the single source of truth.
-  - Enforce no invented features, claims, integrations, or secrets.
-  - Require Korean user-facing copy and English code identifiers.
-  - Require responsive behavior and static-hosting compatibility.
-- `.cursor/rules/frontend-quality.mdc`
-  - Require typed components.
-  - Require accessible buttons and links.
-  - Require non-blocking analytics.
-  - Require metadata validation.
-- `CLAUDE.md`
-  - If the project uses Claude Code-compatible execution within Cubivora, summarize the same implementation constraints and validation commands.
-- Cubivora task/feature records
-  - Track F1–F7 individually.
-  - Link each task to the relevant acceptance criteria.
-
-### Agent/task decomposition
-
-Use sub-agents or parallel tasks only for clearly separated work:
-
-| Task | Scope | Must not do |
-|---|---|---|
-| `layout_agent` | Build the specified sections, header, and responsive layout. | Add unrelated screens or interactions. |
-| `content_model_agent` | Create typed local models and approved-content placeholders. | Invent testimonials or product claims. |
-| `seo_agent` | Add title, description, canonical, language, and OG metadata. | Invent a production domain or social image URL. |
-| `analytics_agent` | Implement `page_view` and `cta_click` adapter behavior. | Block CTA navigation or add unapproved analytics providers. |
-| `qa_agent` | Validate routes, responsive behavior, build output, and acceptance criteria. | Change product scope without approval. |
-
-### Implementation conventions
-
-- Use English `camelCase` or `snake_case` identifiers.
-- Keep Korean copy in content/config modules and quote it in source when necessary.
-- Put unresolved values behind explicit configuration such as `ctaConfig.destination`, not arbitrary fallback destinations.
-- Use environment variables for all future external service keys.
-- Do not mark a feature complete until its acceptance criteria are tested.
-- Do not perform production deployment or domain connection.
-
-## 13. Do NOT (AI forbidden rules)
-
-- Do not add features, screens, or APIs not specified in this PRD.
-- Do not turn the landing page into a furniture marketplace, comparison engine, checkout, or account product.
-- Do not add login, signup forms, OAuth, roles, or permissions.
-- Do not add payment processing, subscriptions, or a payment gateway.
-- Do not add MCP servers or AI model integrations.
-- Do not fabricate testimonials, user names, ratings, results, savings, customer counts, dates, or forecasts.
-- Do not present any unverified figure as a factual claim.
-- Do not invent the CTA destination. Keep it `[TBD]` until an approved URL/path is supplied.
-- Do not invent the logo asset, brand name, point color, OG image, ad provider, browser list, breakpoint values, or analytics provider.
-- Do not claim that the product collects no personal data if testimonials or analytics are stored on a server.
-- Do not store identifiable testimonial information on a server without approved content and a defined retention policy.
-- Do not hardcode API keys, secrets, ad keys, analytics credentials, or payment gateway keys.
-- Do not connect a production domain or deploy to production.
-- Do not make analytics failure block page rendering or CTA navigation.
-- Do not allow responsive layouts to overlap, clip, distort, or hide the primary CTA.
-- Do not silently replace missing required content with fictional content.
-- Do not add UI languages other than Korean.
-- Do not change the required routes `/hero`, `/screen`, `/screen-2`, `/screen-3`, and `/cta` without explicit approval.
-- Do not treat deferred feature-gap statuses as permission to remove the corresponding must-have features from this PRD.
+- UI theme: 깔끔하고 단순한 구조, 흰색 기반, 포인트 컬러 1개 사용, 큰 제목 + 짧은 문장 중심, 한 화면에서 하나의 메시지만 전달
+- Tone: 신뢰형 클린
+- Reference apps: -
+- Coding IDE: Cubivora

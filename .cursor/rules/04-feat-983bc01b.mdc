@@ -1,0 +1,31 @@
+---
+description: Feature implementation unit — 고객 후기 섹션 추가 (랜딩 페이지 생성). Load only while implementing this feature.
+globs: ["app/**", "frontend/**", "backend/**", "src/**"]
+alwaysApply: false
+---
+
+# Feature: 고객 후기 섹션 추가
+
+- **english_key**: `983bc01b`
+- **priority**: must
+- **scope**: Implement ONLY this feature slice in this session.
+
+## TDD mandate
+
+1. Write failing tests first (unit or integration) for the acceptance criteria below.
+2. Implement minimal code to pass tests.
+3. Do NOT read the entire PRD — use this file + referenced routes/entities only.
+
+## Acceptance (compressed)
+
+- **When** 모바일 또는 PC 화면에서 페이지를 확인한다 → **Then** 콘텐츠와 CTA가 화면 너비에 맞게 깨지지 않고 표시된다
+- **When** CTA 버튼을 클릭한다 → **Then** 회원가입 또는 서비스 시작 페이지로 이동한다
+- **When** 각 이벤트가 발생한다 → **Then** 방문 및 CTA 클릭 이벤트가 기록된다
+
+## Detail
+
+서비스에 대한 신뢰도를 높이고 구체적인 강점을 시각적으로 전달하기 위해 '고객 후기' 섹션을 추가합니다. 이 섹션에는 세 명의 고객 후기 카드가 포함됩니다. 각 후기 카드는 고객 이름, 5점 만점의 별점, 그리고 한 줄 코멘트로 구성됩니다. 초기 데이터는 다음과 같습니다: - 김지현 님: 별점 5점, "설치 다음 날 바로 문의가 들어왔어요" - 박준호 님: 별점 4점, "디자인이 깔끔해서 신뢰가 갑니다" - 이서연 님: 별점 5점, "문의 폼이 간단해 전환율이 올랐어요" 화면 구성은 PC 환경에서는 세 개의 후기 카드가 가로로
+
+## Stop condition
+
+When all acceptance tests pass and routes match semantic paths in PRD §5, stop and commit.

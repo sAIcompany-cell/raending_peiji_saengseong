@@ -1,39 +1,26 @@
-## Mission
+---
+description: Project overview and the single source of truth pointer. Always applied.
+alwaysApply: true
+---
 
-- Help visitors understand the furniture service quickly.
-- Reduce the burden of comparing prices and visiting stores.
-- Build trust with clear value, responsive content, and authentic testimonials.
-- Guide visitors to apply, inquire, sign up, or start the service through a clear CTA.
-- Treat `docs/PRD.md` as the single source of truth.
-- Read `.cubivora/TEAM.md` and `.cubivora/Memory.md` before planning or coding.
-- Update `docs/PRD.md` in the same commit when implementation decisions diverge from it.
+# 랜딩 페이지 생성 — Overview
 
-## North-star metric
+- **One-liner**: 방문자가 서비스를 빠르게 이해하고 CTA 버튼을 눌러 신청/문의까지 이어지게 하는 랜딩페이지
+- **Device target**: Web (browser)
 
-- Maximize the CTA click conversion rate.
-- Calculate it as unique CTA clickers divided by unique landing-page visitors.
-- Measure landing-page visits and CTA clicks consistently across mobile and desktop.
-<!-- TBD: No baseline or target CTA conversion rate is provided. -->
+## Source of truth
 
-## Killer differentiator
+`docs/PRD.md` is the **single source of truth**. Any code edit that diverges
+from the PRD MUST be reflected back to `docs/PRD.md` in the same commit.
 
-- Let furniture shoppers compare options without the inconvenience of visiting multiple stores.
-- Connect credible customer outcomes directly to the visitor’s price-comparison and store-visit concerns.
-- Keep the path from discovery to application or inquiry fast and consistent on every supported device.
+## AI team package (read first)
 
-## Primary personas
+Before planning or coding, read **`.cubivora/TEAM.md`** (team overview + **Project Persona**)
+and **`.cubivora/Memory.md`** (Why-Decision Log). These are **project-specific**
+long-term memory — highest priority over generic assumptions.
 
-- Furniture shoppers planning an upcoming purchase.
-- Price-conscious customers comparing furniture options.
-- Customers who find in-person store visits inconvenient.
+## Companion rule files
 
-## Top user journeys
-
-- Discover the page through search and understand the service from its title, description, and primary content.
-- Recognize the brand from the persistent, undistorted logo.
-- Review the service value and furniture price-comparison benefits.
-- Read authentic testimonials about easier comparisons or fewer store visits.
-- Select the primary CTA on mobile or desktop.
-- Continue to the designated sign-up, application, inquiry, or service-start page without errors.
-- Record the landing-page visit and CTA click for conversion analysis.
-- Select the logo to return to the landing-page start or the main service page.
+- `01-architecture.mdc` — folder structure & module boundaries
+- `02-stack.mdc` — runtime stack and conventions
+- `03-do-not.mdc` — hard prohibitions (read before writing code)
