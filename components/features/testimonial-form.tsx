@@ -7,9 +7,27 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { validateTestimonialInput } from "@/lib/schema";
+import type { ValidationResult } from "@/lib/schema";
 import { cn } from "@/lib/utils";
 import type { TestimonialInput, TestimonialRating } from "@/types";
+
+function readField(value: FormDataEntryValue | null, label: string, min: number, max: number, errors: Record<string, string>): string {
+  const text = typeof value === "string" ? value.trim() : "";
+  if (text.length < min) errors[label] = `${min}자 이상 입력해 주세요.`;
+  else if (text.length > max) errors[label] = `${max}자 이하로 입력해 주세요.`;
+  return text;
+}
+
+function validateForm(data: FormData, rating: TestimonialRating): ValidationResult<TestimonialInput> {
+  const errors: Record<string, string> = {};
+  const quote = readField(data.get("quote"), "quote", 10, 500, errors);
+  const author = readField(data.get("author"), "author", 1, 40, errors);
+  const authorContext = readField(data.get("authorContext"), "authorContext", 1, 80, errors);
+  const result = readField(data.get("result"), "result", 1, 120, errors);
+  if (![1, 2, 3, 4, 5].includes(rating)) errors.rating = "별점을 선택해 주세요.";
+  if (Object.keys(errors).length > 0) return { ok: false, errors };
+  return { ok: true, value: { quote, author, authorContext, result, rating } };
+}
 
 interface TestimonialFormProps {
   /** 검증을 통과한 입력을 전달한다. 실패 시 오류 문구를 돌려준다. */
@@ -27,13 +45,7 @@ export function TestimonialForm({ onSubmit, className }: TestimonialFormProps) {
     event.preventDefault();
     const form = event.currentTarget;
     const data = new FormData(form);
-    const validation = validateTestimonialInput({
-      quote: data.get("quote"),
-      author: data.get("author"),
-      authorContext: data.get("authorContext"),
-      result: data.get("result"),
-      rating,
-    });
+    const validation = validateForm(data, rating);
     if (!validation.ok) {
       setErrors(validation.errors);
       return;
