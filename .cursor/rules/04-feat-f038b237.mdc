@@ -1,0 +1,31 @@
+---
+description: Feature implementation unit — 자주 묻는 질문 섹션 추가 (랜딩 페이지 생성). Load only while implementing this feature.
+globs: ["app/**", "frontend/**", "backend/**", "src/**"]
+alwaysApply: false
+---
+
+# Feature: 자주 묻는 질문 섹션 추가
+
+- **english_key**: `f038b237`
+- **priority**: should
+- **scope**: Implement ONLY this feature slice in this session.
+
+## TDD mandate
+
+1. Write failing tests first (unit or integration) for the acceptance criteria below.
+2. Implement minimal code to pass tests.
+3. Do NOT read the entire PRD — use this file + referenced routes/entities only.
+
+## Acceptance (compressed)
+
+- **When** 모바일 또는 PC 화면에서 페이지를 확인한다 → **Then** 콘텐츠와 CTA가 화면 너비에 맞게 깨지지 않고 표시된다
+- **When** CTA 버튼을 클릭한다 → **Then** 회원가입 또는 서비스 시작 페이지로 이동한다
+- **When** 각 이벤트가 발생한다 → **Then** 방문 및 CTA 클릭 이벤트가 기록된다
+
+## Detail
+
+'배송은 얼마나 걸리나요', '반품이 가능한가요', '매장 방문 없이 구매할 수 있나요' 세 가지 질문을 히어로 섹션 바로 아래에 배치하여 사용자의 궁금증을 해소하고 신뢰를 높입니다.
+
+## Stop condition
+
+When all acceptance tests pass and routes match semantic paths in PRD §5, stop and commit.

@@ -50,6 +50,7 @@
   - 🔎 Detail: Google Analytics 연동
   - 🔎 Detail: 에러 페이지로 이동
 - **[MUST]** 고객 후기 섹션 추가 — 서비스에 대한 신뢰도를 높이고 구체적인 강점을 시각적으로 전달하기 위해 '고객 후기' 섹션을 추가합니다. 이 섹션에는 세 명의 고객 후기 카드가 포함됩니다. 각 후기 카드는 고객 이름, 5점 만점의 별점, 그리고 한 줄 코멘트로 구성됩니다. 초기 데이터는 다음과 같습니다: - 김지현 님: 별점 5점, "설치 다음 날 바로 문의가 들어왔어요" - 박준호 님: 별점 4점, "디자인이 깔끔해서 신뢰가 갑니다" - 이서연 님: 별점 5점, "문의 폼이 간단해 전환율이 올랐어요" 화면 구성은 PC 환경에서는 세 개의 후기 카드가 가로로
+- **[SHOULD]** 자주 묻는 질문 섹션 추가 — '배송은 얼마나 걸리나요', '반품이 가능한가요', '매장 방문 없이 구매할 수 있나요' 세 가지 질문을 히어로 섹션 바로 아래에 배치하여 사용자의 궁금증을 해소하고 신뢰를 높입니다.
 
 ## 5. Screens / URLs
 
@@ -72,6 +73,9 @@
 ### 🧩 Screens for the “사용자 후기 섹션” feature
 - 사용자 후기 섹션 화면 — 실제 사용자의 긍정적인 평가와 결과를 시각적으로 표시하여 신뢰도를 높인다.
 
+### 🧩 Screens for the “고객 후기 섹션 추가” feature
+- 랜딩 페이지
+
 ### 🧩 Screens for the “모바일/PC 반응형 지원” feature
 - 풀스크린 스크롤형
 
@@ -81,8 +85,8 @@
 ### 🧩 Screens for the “방문 및 CTA 클릭 이벤트 측정” feature
 - 히어로 스크롤 추적형
 
-### 🧩 Screens for the “고객 후기 섹션 추가” feature
-- 랜딩 페이지
+### 🧩 Screens for the “자주 묻는 질문 섹션 추가” feature
+- /hero
 
 ## 6. Data model
 
@@ -194,10 +198,10 @@ erDiagram
 | `GET` | `/api/seo/{id}` | _(no body)_ | `object` | 400 invalid payload, 404 not found, 422 rule violation | `guest` | derived |
 | `GET` | `/api/screen-ff2f57` | _(no body)_ | `{ items: object[], total: number }` | 400 invalid payload, 409 conflicting state, 422 rule violation | `guest` | derived |
 | `POST` | `/api/screen-ff2f57/{id}/decision` | <!-- TBD: no entity in entities[] matches this feature, so the request body is unknown --> | `object` | 400 invalid payload, 404 not found, 409 conflicting state, 422 rule violation | `guest` | derived |
-| `GET` | `/api/cta` | _(no body)_ | `{ items: object[], total: number }` | 400 invalid payload, 422 rule violation | `guest` | derived |
-| `GET` | `/api/cta/{id}` | _(no body)_ | `object` | 400 invalid payload, 404 not found, 422 rule violation | `guest` | derived |
+| `PATCH` | `/api/cta/{id}` | <!-- TBD: no entity in entities[] matches this feature, so the request body is unknown --> | `object` | 400 invalid payload, 404 not found, 422 rule violation | `guest` | derived |
 | `GET` | `/api/cta/summary` | _(no body)_ | `object` | 400 invalid payload, 422 rule violation | `guest` | derived |
 | `POST` | `/api/983bc01b` | <!-- TBD: no entity in entities[] matches this feature, so the request body is unknown --> | `object` | 400 invalid payload, 422 rule violation | `guest` | derived |
+| `POST` | `/api/f038b237` | <!-- TBD: no entity in entities[] matches this feature, so the request body is unknown --> | `object` | 400 invalid payload, 422 rule violation | `guest` | derived |
 
 > Rows marked `derived` come from `features` + `entities`, not from an explicit
 > API declaration. They are the contract to implement unless the user says otherwise.
@@ -232,9 +236,10 @@ erDiagram
 | `/api/pc` | 모바일/PC 반응형 지원 | read (own + public) |
 | `/api/seo` | 기본 SEO 메타 태그 적용 | read (own + public) |
 | `/api/screen-ff2f57` | 사용자 후기 섹션 | read (own submission) |
-| `/api/cta` | CTA 버튼 클릭 | read (own + public) |
+| `/api/cta` | CTA 버튼 클릭 | update (own) |
 | `/api/cta` | 방문 및 CTA 클릭 이벤트 측정 | read (own aggregate) |
 | `/api/983bc01b` | 고객 후기 섹션 추가 | create, read (own) |
+| `/api/f038b237` | 자주 묻는 질문 섹션 추가 | create, read (own) |
 
 <!-- TBD: no operator role found in auth.roles — every row below is end-user only. If an admin console is planned, the operator role must be declared first. -->
 
