@@ -1,3 +1,4 @@
+import type { AnalyticsEventInput } from "@/lib/schema";
 import { USE_MOCK } from "@/lib/data/mode";
 import { mockAnalyticsEventList } from "@/lib/mock-data";
 import { createServerSupabase } from "@/lib/supabase/server";
@@ -15,7 +16,6 @@ import { createServerSupabase } from "@/lib/supabase/server";
 export const ANALYTICSEVENT_TABLE = "analyticsevent";
 
 export type AnalyticsEventRow = (typeof mockAnalyticsEventList)[number];
-export type AnalyticsEventInput = Omit<AnalyticsEventRow, "id">;
 
 // 목업 모드의 메모리 저장소 — 프로세스가 살아 있는 동안 쓰기가 반영돼 화면이 살아 움직인다.
 const memory: AnalyticsEventRow[] = [...mockAnalyticsEventList];

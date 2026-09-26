@@ -1,3 +1,4 @@
+import type { LandingPageSectionInput } from "@/lib/schema";
 import { USE_MOCK } from "@/lib/data/mode";
 import { mockLandingPageSectionList } from "@/lib/mock-data";
 import { createServerSupabase } from "@/lib/supabase/server";
@@ -15,7 +16,6 @@ import { createServerSupabase } from "@/lib/supabase/server";
 export const LANDINGPAGESECTION_TABLE = "landingpagesection";
 
 export type LandingPageSectionRow = (typeof mockLandingPageSectionList)[number];
-export type LandingPageSectionInput = Omit<LandingPageSectionRow, "id">;
 
 // 목업 모드의 메모리 저장소 — 프로세스가 살아 있는 동안 쓰기가 반영돼 화면이 살아 움직인다.
 const memory: LandingPageSectionRow[] = [...mockLandingPageSectionList];
