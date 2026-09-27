@@ -1,0 +1,68 @@
+.section {
+  display: grid;
+  gap: 1rem;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.headingIcon {
+  color: var(--brand);
+}
+
+.list {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  overflow: hidden;
+}
+
+.trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  border: 0;
+  background: none;
+  text-align: left;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--motion);
+}
+
+.trigger:hover {
+  background: var(--surface-2);
+}
+
+.trigger:focus-visible {
+  box-shadow: inset var(--ring);
+  border-radius: 0;
+}
+
+.chevron {
+  flex-shrink: 0;
+  color: var(--fg-subtle);
+  transition: transform var(--motion);
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+  color: var(--brand);
+}
+
+.answer {
+  padding: 0 1rem 1rem;
+  color: var(--fg-muted);
+  font-size: var(--text-small);
+  line-height: 1.65;
+}

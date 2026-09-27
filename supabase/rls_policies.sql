@@ -1,45 +1,6 @@
--- Cubivora Studio auto-generated schema + Row Level Security
--- 사용법: 이 파일 **전체**를 Supabase → SQL Editor → New query 에 붙여넣고 Run 하세요.
---        테이블 생성과 행 단위 보안 정책이 함께 적용됩니다. 여러 번 실행해도 안전합니다.
--- 주의: 이 파일은 코드 생성 때마다 다시 만들어집니다. 직접 쓴 SQL 은 별도 파일에 두세요.
---
--- 정책 요약 (테이블 : 규칙)
---   landingpagesection   누구나 읽기 · 쓰기는 로그인 사용자 본인 행만
---   testimonial          누구나 읽기 · 쓰기는 로그인 사용자 본인 행만
---   analyticsevent       누구나 읽기 · 쓰기는 로그인 사용자 본인 행만
-
-CREATE EXTENSION IF NOT EXISTS "pgcrypto";
-
-CREATE TABLE IF NOT EXISTS public."landingpagesection" (
-  "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  "user_id" uuid REFERENCES auth.users(id),
-  "created_at" timestamptz NOT NULL DEFAULT now(),
-  "type" text,
-  "title" text,
-  "content" text,
-  "order" numeric
-);
-
-CREATE TABLE IF NOT EXISTS public."testimonial" (
-  "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  "user_id" uuid REFERENCES auth.users(id),
-  "created_at" timestamptz NOT NULL DEFAULT now(),
-  "quote" text,
-  "author" text,
-  "result" text
-);
-
-CREATE TABLE IF NOT EXISTS public."analyticsevent" (
-  "id" uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  "user_id" uuid REFERENCES auth.users(id),
-  "created_at" timestamptz NOT NULL DEFAULT now(),
-  "name" text,
-  "pagepath" text,
-  "occurredat" timestamptz
-);
-
--- ── Row Level Security ─────────────────────────────────────────────
--- 정책이 없는 명령은 거부된다. 아래 정책이 곧 이 앱의 접근 규칙이다.
+-- Cubivora Studio auto-generated RLS policies
+-- schema.sql 에 같은 정책이 이미 들어 있다. 정책만 다시 적용할 때 이 파일을 쓴다.
+-- Supabase SQL Editor 에 붙여넣고 Run 하세요. 코드 생성 때마다 다시 만들어집니다.
 
 ALTER TABLE public."landingpagesection" ENABLE ROW LEVEL SECURITY;
 

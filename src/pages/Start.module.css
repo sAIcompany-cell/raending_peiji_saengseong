@@ -1,0 +1,74 @@
+.main {
+  flex: 1;
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 2rem 1.25rem 4rem;
+  display: grid;
+  gap: 2.5rem;
+}
+
+.head {
+  display: grid;
+  gap: 1rem;
+  max-width: var(--prose-max);
+}
+
+.eyebrow {
+  width: fit-content;
+}
+
+.subtitle {
+  font-size: 1.0625rem;
+  color: var(--fg-muted);
+}
+
+.clickCard {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.clickIcon {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius-md);
+  background: var(--success-soft);
+  color: var(--success);
+}
+
+.clickBody {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.clickMeta {
+  color: var(--fg-muted);
+  font-size: var(--text-small);
+}
+
+.clickLabel {
+  color: var(--brand);
+  font-weight: 700;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 0;
+}
+
+@media (min-width: 900px) {
+  .main {
+    padding-top: 3rem;
+  }
+}
