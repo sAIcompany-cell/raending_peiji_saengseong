@@ -1,0 +1,18 @@
+.solution {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--brand);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  background: var(--brand-soft);
+  color: var(--fg);
+  font-weight: 550;
+  max-width: var(--prose-max);
+}
+
+.solutionIcon {
+  flex-shrink: 0;
+  color: var(--brand);
+  margin-top: 0.15rem;
+}
