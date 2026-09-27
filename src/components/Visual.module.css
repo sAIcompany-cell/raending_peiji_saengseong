@@ -1,0 +1,172 @@
+.frame {
+  margin: 0;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: var(--bg-subtle);
+  overflow: hidden;
+}
+
+/* ─── 비교 카드 ─── */
+.compare {
+  padding: var(--space-5) var(--space-4);
+  background:
+    radial-gradient(120% 80% at 100% 0%, var(--brand-soft) 0%, transparent 60%),
+    var(--bg-subtle);
+}
+
+.window {
+  max-width: 520px;
+  margin: 0 auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-md);
+}
+
+.windowBar {
+  display: flex;
+  gap: 6px;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border);
+}
+
+.windowBar span {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--border-strong);
+}
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 40px 1fr 24px;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2);
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+}
+
+.rowIcon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--surface-muted);
+  color: var(--fg-muted);
+}
+
+.rowTrack {
+  height: 10px;
+  border-radius: var(--radius-full);
+  background: var(--surface-muted);
+  overflow: hidden;
+}
+
+.rowBar {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--border-strong);
+}
+
+.rowMark {
+  display: grid;
+  place-items: center;
+  color: var(--brand);
+}
+
+.picked {
+  background: var(--brand-soft);
+  border-color: var(--brand-soft-border);
+}
+
+.picked .rowIcon {
+  background: var(--surface);
+  color: var(--brand);
+}
+
+.picked .rowBar {
+  background: var(--brand);
+}
+
+/* ─── 아이콘 흐름 ─── */
+.flow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-6) var(--space-4);
+}
+
+.flowBrand {
+  background: var(--brand-soft);
+  border-color: var(--brand-soft-border);
+}
+
+.icons {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(var(--space-5), 8vw, var(--space-8));
+}
+
+.connected::before {
+  content: '';
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  top: 50%;
+  border-top: 2px dashed var(--border-strong);
+}
+
+.iconBubble {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--fg-muted);
+  box-shadow: var(--shadow-sm);
+}
+
+.iconBubble:last-child {
+  color: var(--brand);
+  border-color: var(--brand-soft-border);
+}
+
+.caption {
+  max-width: 30rem;
+  text-align: center;
+  font-size: var(--text-title);
+  font-weight: 700;
+  line-height: 1.45;
+  color: var(--fg);
+}
+
+@media (min-width: 768px) {
+  .compare {
+    padding: var(--space-7) var(--space-6);
+  }
+
+  .flow {
+    padding: var(--space-7) var(--space-6);
+  }
+
+  .iconBubble {
+    width: 64px;
+    height: 64px;
+  }
+}

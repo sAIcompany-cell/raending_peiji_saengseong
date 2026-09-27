@@ -1,0 +1,226 @@
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.blockHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.blockTitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.blockDesc {
+  margin-top: var(--space-1);
+  font-size: var(--text-small);
+  color: var(--fg-muted);
+}
+
+.warning {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--warning-soft);
+  color: var(--warning);
+  font-size: var(--text-small);
+}
+
+.warning svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+/* 통계 */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  min-width: 0;
+}
+
+.statLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+  color: var(--fg-muted);
+}
+
+.statLabel svg {
+  color: var(--brand);
+}
+
+.statValue {
+  font-size: var(--text-title);
+  font-weight: 800;
+  color: var(--brand);
+  font-variant-numeric: tabular-nums;
+}
+
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-small);
+}
+
+.table th,
+.table td {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.table thead th {
+  background: var(--bg-subtle);
+  color: var(--fg-muted);
+  font-weight: 600;
+}
+
+.table tbody tr:last-child th,
+.table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.table td {
+  font-variant-numeric: tabular-nums;
+}
+
+/* 기기 */
+.devices {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+.device {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  transition: border-color var(--duration) var(--ease);
+}
+
+.deviceCurrent {
+  border-color: var(--brand-soft-border);
+  background: var(--brand-soft);
+}
+
+.deviceTop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.deviceIcon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--surface-muted);
+  color: var(--fg-muted);
+}
+
+.deviceCurrent .deviceIcon {
+  background: var(--surface);
+  color: var(--brand);
+}
+
+.deviceName {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  line-height: 1.35;
+}
+
+.deviceName span {
+  font-size: 0.8125rem;
+  color: var(--fg-muted);
+}
+
+.deviceNote {
+  font-size: var(--text-small);
+  color: var(--fg-muted);
+}
+
+/* SEO */
+.meta {
+  margin: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.metaRow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-1);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border);
+}
+
+.metaRow:last-child {
+  border-bottom: 0;
+}
+
+.metaRow dt {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--fg-muted);
+}
+
+.metaRow dd {
+  margin: 0;
+  font-size: var(--text-small);
+  word-break: break-all;
+}
+
+.missing {
+  color: var(--warning);
+}
+
+@media (min-width: 768px) {
+  .devices {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .metaRow {
+    grid-template-columns: 140px 1fr;
+    gap: var(--space-4);
+  }
+}
