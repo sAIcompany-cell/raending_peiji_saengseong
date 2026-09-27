@@ -1,0 +1,23 @@
+# 생성된 앱 저장소의 CI — push/PR 마다 빌드와 스모크 테스트를 돈다.
+name: ci
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+        env:
+          # 키가 없으면 목업 모드로 빌드된다 — 실데이터 검증은 배포 환경에서 한다.
+          NEXT_PUBLIC_USE_MOCK_DATA: "true"
+      - run: npm test
