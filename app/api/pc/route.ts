@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { mockResponsiveSettingList } from "@/lib/mock-data";
+import { listResponsiveSetting } from "@/lib/data/responsive";
 
 export async function GET() {
-  return NextResponse.json(mockResponsiveSettingList);
+  return NextResponse.json(await listResponsiveSetting());
 }

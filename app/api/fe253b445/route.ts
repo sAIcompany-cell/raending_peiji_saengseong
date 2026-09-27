@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { mockLogoList } from "@/lib/mock-data";
+import { listLogo } from "@/lib/data/logo";
 
 export async function GET() {
-  return NextResponse.json(mockLogoList);
+  return NextResponse.json(await listLogo());
 }

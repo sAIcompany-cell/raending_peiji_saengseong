@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
-import { mockSeoMetadataList } from "@/lib/mock-data";
+import { listSeoMetadata } from "@/lib/data/seo";
 
 export async function GET() {
-  return NextResponse.json(mockSeoMetadataList);
+  return NextResponse.json(await listSeoMetadata());
 }

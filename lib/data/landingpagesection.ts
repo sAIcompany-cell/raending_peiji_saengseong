@@ -1,4 +1,5 @@
-import type { LandingPageSection, LandingPageSectionInput } from "@/types";
+import type { LandingPageSection } from "@/types";
+import type { LandingPageSectionInput } from "@/lib/schema";
 import { USE_MOCK } from "@/lib/data/mode";
 import { mockLandingPageSectionList } from "@/lib/mock-data";
 import { createServerSupabase } from "@/lib/supabase/server";
@@ -17,7 +18,7 @@ const toSection = (row: Record<string, unknown>): LandingPageSection => ({
 
 export async function listLandingPageSection(): Promise<LandingPageSection[]> {
   if (USE_MOCK) return [...mockLandingPageSectionList];
-  const { data, error } = await createServerSupabase()
+  const { data, error } = await (await createServerSupabase())
     .from(LANDINGPAGESECTION_TABLE)
     .select("*")
     .order("order", { ascending: true });
@@ -27,7 +28,7 @@ export async function listLandingPageSection(): Promise<LandingPageSection[]> {
 
 export async function getLandingPageSection(id: string): Promise<LandingPageSection | null> {
   if (USE_MOCK) return mockLandingPageSectionList.find((item) => item.id === id) ?? null;
-  const { data, error } = await createServerSupabase()
+  const { data, error } = await (await createServerSupabase())
     .from(LANDINGPAGESECTION_TABLE)
     .select("*")
     .eq("id", id)
@@ -46,7 +47,7 @@ export async function createLandingPageSection(input: LandingPageSectionInput): 
     mockLandingPageSectionList.push(item as typeof mockLandingPageSectionList[number]);
     return item;
   }
-  const { data, error } = await createServerSupabase()
+  const { data, error } = await (await createServerSupabase())
     .from(LANDINGPAGESECTION_TABLE)
     .insert({ type: input.type, title: input.title, content: input.content, order: input.order })
     .select()
@@ -62,7 +63,7 @@ export async function updateLandingPageSection(id: string, input: LandingPageSec
     Object.assign(item, input);
     return item;
   }
-  const { data, error } = await createServerSupabase()
+  const { data, error } = await (await createServerSupabase())
     .from(LANDINGPAGESECTION_TABLE)
     .update(input)
     .eq("id", id)
@@ -79,7 +80,7 @@ export async function deleteLandingPageSection(id: string): Promise<boolean> {
     mockLandingPageSectionList.splice(index, 1);
     return true;
   }
-  const { error } = await createServerSupabase().from(LANDINGPAGESECTION_TABLE).delete().eq("id", id);
+  const { error } = await (await createServerSupabase()).from(LANDINGPAGESECTION_TABLE).delete().eq("id", id);
   if (error) throw error;
   return true;
 }

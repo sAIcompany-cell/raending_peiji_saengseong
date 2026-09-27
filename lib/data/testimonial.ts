@@ -1,4 +1,5 @@
-import type { Testimonial, TestimonialInput } from "@/types";
+import type { Testimonial } from "@/types";
+import type { TestimonialInput } from "@/lib/schema";
 import { USE_MOCK } from "@/lib/data/mode";
 import { mockTestimonialList } from "@/lib/mock-data";
 import { createServerSupabase } from "@/lib/supabase/server";
@@ -16,14 +17,14 @@ const toTestimonial = (row: Record<string, unknown>): Testimonial => ({
 
 export async function listTestimonial(): Promise<Testimonial[]> {
   if (USE_MOCK) return [...mockTestimonialList];
-  const { data, error } = await createServerSupabase().from(TESTIMONIAL_TABLE).select("*").order("created_at", { ascending: false });
+  const { data, error } = await (await createServerSupabase()).from(TESTIMONIAL_TABLE).select("*").order("created_at", { ascending: false });
   if (error) throw error;
   return (data ?? []).map(toTestimonial);
 }
 
 export async function getTestimonial(id: string): Promise<Testimonial | null> {
   if (USE_MOCK) return mockTestimonialList.find((item) => item.id === id) ?? null;
-  const { data, error } = await createServerSupabase().from(TESTIMONIAL_TABLE).select("*").eq("id", id).maybeSingle();
+  const { data, error } = await (await createServerSupabase()).from(TESTIMONIAL_TABLE).select("*").eq("id", id).maybeSingle();
   if (error) throw error;
   return data ? toTestimonial(data) : null;
 }
@@ -34,7 +35,7 @@ export async function createTestimonial(input: TestimonialInput): Promise<Testim
     mockTestimonialList.push(item);
     return item;
   }
-  const { data, error } = await createServerSupabase().from(TESTIMONIAL_TABLE).insert(input).select().single();
+  const { data, error } = await (await createServerSupabase()).from(TESTIMONIAL_TABLE).insert(input).select().single();
   if (error) throw error;
   return toTestimonial(data);
 }
@@ -46,7 +47,7 @@ export async function updateTestimonial(id: string, input: TestimonialInput): Pr
     Object.assign(item, input);
     return item;
   }
-  const { data, error } = await createServerSupabase().from(TESTIMONIAL_TABLE).update(input).eq("id", id).select().maybeSingle();
+  const { data, error } = await (await createServerSupabase()).from(TESTIMONIAL_TABLE).update(input).eq("id", id).select().maybeSingle();
   if (error) throw error;
   return data ? toTestimonial(data) : null;
 }
@@ -58,7 +59,7 @@ export async function deleteTestimonial(id: string): Promise<boolean> {
     mockTestimonialList.splice(index, 1);
     return true;
   }
-  const { error } = await createServerSupabase().from(TESTIMONIAL_TABLE).delete().eq("id", id);
+  const { error } = await (await createServerSupabase()).from(TESTIMONIAL_TABLE).delete().eq("id", id);
   if (error) throw error;
   return true;
 }

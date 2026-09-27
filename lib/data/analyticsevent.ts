@@ -1,4 +1,5 @@
-import type { AnalyticsEvent, AnalyticsEventInput } from "@/types";
+import type { AnalyticsEvent } from "@/types";
+import type { AnalyticsEventInput } from "@/lib/schema";
 import { USE_MOCK } from "@/lib/data/mode";
 import { mockAnalyticsEventList } from "@/lib/mock-data";
 import { createServerSupabase } from "@/lib/supabase/server";
@@ -16,14 +17,14 @@ const toEvent = (row: Record<string, unknown>): AnalyticsEvent => ({
 
 export async function listAnalyticsEvent(): Promise<AnalyticsEvent[]> {
   if (USE_MOCK) return [...mockAnalyticsEventList];
-  const { data, error } = await createServerSupabase().from(ANALYTICSEVENT_TABLE).select("*").order("occurred_at", { ascending: false });
+  const { data, error } = await (await createServerSupabase()).from(ANALYTICSEVENT_TABLE).select("*").order("occurred_at", { ascending: false });
   if (error) throw error;
   return (data ?? []).map(toEvent);
 }
 
 export async function getAnalyticsEvent(id: string): Promise<AnalyticsEvent | null> {
   if (USE_MOCK) return mockAnalyticsEventList.find((item) => item.id === id) ?? null;
-  const { data, error } = await createServerSupabase().from(ANALYTICSEVENT_TABLE).select("*").eq("id", id).maybeSingle();
+  const { data, error } = await (await createServerSupabase()).from(ANALYTICSEVENT_TABLE).select("*").eq("id", id).maybeSingle();
   if (error) throw error;
   return data ? toEvent(data) : null;
 }
@@ -40,7 +41,7 @@ export async function createAnalyticsEvent(input: AnalyticsEventInput): Promise<
     mockAnalyticsEventList.push(item);
     return item;
   }
-  const { data, error } = await createServerSupabase().from(ANALYTICSEVENT_TABLE).insert({ name: input.name, page_path: input.pagePath, occurred_at: input.occurredAt }).select().single();
+  const { data, error } = await (await createServerSupabase()).from(ANALYTICSEVENT_TABLE).insert({ name: input.name, page_path: input.pagePath, occurred_at: input.occurredAt }).select().single();
   if (error) throw error;
   return toEvent(data);
 }
@@ -52,7 +53,7 @@ export async function updateAnalyticsEvent(id: string, input: AnalyticsEventInpu
     Object.assign(item, input);
     return item;
   }
-  const { data, error } = await createServerSupabase().from(ANALYTICSEVENT_TABLE).update({ name: input.name, page_path: input.pagePath, occurred_at: input.occurredAt }).eq("id", id).select().maybeSingle();
+  const { data, error } = await (await createServerSupabase()).from(ANALYTICSEVENT_TABLE).update({ name: input.name, page_path: input.pagePath, occurred_at: input.occurredAt }).eq("id", id).select().maybeSingle();
   if (error) throw error;
   return data ? toEvent(data) : null;
 }
@@ -64,7 +65,7 @@ export async function deleteAnalyticsEvent(id: string): Promise<boolean> {
     mockAnalyticsEventList.splice(index, 1);
     return true;
   }
-  const { error } = await createServerSupabase().from(ANALYTICSEVENT_TABLE).delete().eq("id", id);
+  const { error } = await (await createServerSupabase()).from(ANALYTICSEVENT_TABLE).delete().eq("id", id);
   if (error) throw error;
   return true;
 }
